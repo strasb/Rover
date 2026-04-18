@@ -2,7 +2,7 @@
 
 This project already contains the required firmware source and documentation for the LILYGO T-2CAN ESP32-S3 target using PlatformIO.
 
-## 1) Files to place in `strasb/Rover_2` before compiling
+## 1) Files to place in your `Rover_2` repository before compiling
 
 Copy these paths into your Rover_2 repository:
 
