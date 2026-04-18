@@ -1,6 +1,8 @@
-# Rover_2 Delivery Package (T-2CAN + 4x MKS ODrive MINI)
+# Firmware Delivery Checklist (T-2CAN + 4x MKS ODrive MINI)
 
 This project already contains the required firmware source and documentation for the LILYGO T-2CAN ESP32-S3 target using PlatformIO.
+
+Use this checklist only if you are importing this firmware from `Rover` into a separate `Rover_2` repository.
 
 ## 1) Files to place in your `Rover_2` repository before compiling
 
@@ -10,7 +12,6 @@ Copy these paths into your Rover_2 repository:
 - `firmware/src/main.cpp`
 - `firmware/include/pin_config.h`
 - `docs/t-2can-odrive-setup.md`
-- `docs/rover_2-delivery.md`
 - `.github/workflows/build-firmware.yml` (optional CI build)
 
 ## 2) Target behavior included
