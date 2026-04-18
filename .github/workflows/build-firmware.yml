@@ -1,0 +1,45 @@
+name: Build T-2CAN Firmware
+
+on:
+  push:
+    paths:
+      - "firmware/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Cache PlatformIO packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.platformio
+          key: pio-${{ runner.os }}-${{ hashFiles('firmware/platformio.ini') }}
+          restore-keys: |
+            pio-${{ runner.os }}-
+
+      - name: Build firmware
+        working-directory: firmware
+        run: pio run --environment lilygo-t2can
+
+      - name: Upload .bin artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: t2can-odrive-firmware
+          path: |
+            firmware/.pio/build/lilygo-t2can/firmware.bin
+            firmware/.pio/build/lilygo-t2can/bootloader.bin
+            firmware/.pio/build/lilygo-t2can/partitions.bin
+          if-no-files-found: error
