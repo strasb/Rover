@@ -40,8 +40,9 @@ static uint32_t lastSendMs   = 0;
 static uint32_t lastActiveMs = 0;
 
 // ── Desired velocity per node (index 0 = node 10) ────────────
-static float nodeVelocity[4] = {0.0f, 0.0f, 0.0f, 0.0f};
-static bool  nodeEnabled[4]  = {false, false, false, false};
+static float nodeVelocity[4]       = {0.0f, 0.0f, 0.0f, 0.0f}; // target (set via API)
+static float nodeVelocityActual[4] = {0.0f, 0.0f, 0.0f, 0.0f}; // current (rate-limited)
+static bool  nodeEnabled[4]        = {false, false, false, false};
 
 // ─────────────────────────────────────────────────────────────
 //  Helpers
@@ -180,12 +181,24 @@ static void controlLoop()
             nodeVelocity[n - ODRIVE_NODE_MIN] = 0.0f;
     }
 
-    // Send velocity to each enabled node
+    // Max velocity step per loop tick enforced by MAX_ACCEL_TURNS_S2
+    const float maxStep = MAX_ACCEL_TURNS_S2 * (SAMPLE_PERIOD_MS / 1000.0f);
+
+    // Ramp and send velocity to each enabled node
     for (uint8_t n = ODRIVE_NODE_MIN; n <= ODRIVE_NODE_MAX; n++)
     {
         uint8_t idx = n - ODRIVE_NODE_MIN;
-        if (nodeEnabled[idx])
-            odriveSetVelocity(n, nodeVelocity[idx]);
+        if (!nodeEnabled[idx]) continue;
+
+        float target = nodeVelocity[idx];
+        float actual = nodeVelocityActual[idx];
+        float diff   = target - actual;
+        if (diff >  maxStep) diff =  maxStep;
+        if (diff < -maxStep) diff = -maxStep;
+        actual += diff;
+        nodeVelocityActual[idx] = actual;
+
+        odriveSetVelocity(n, actual);
     }
 }
 

@@ -16,6 +16,7 @@
 #define MCP2515_PIN_MOSI 11
 #define MCP2515_PIN_MISO 13
 #define MCP2515_PIN_CS   10
+// INT pin is defined for future interrupt-driven RX; polling is used by default.
 #define MCP2515_PIN_INT   9
 
 // ── MCP2515 oscillator crystal ───────────────────────────────
