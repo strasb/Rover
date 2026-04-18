@@ -6,12 +6,12 @@ This project already contains the required firmware source and documentation for
 
 Copy these paths into your Rover_2 repository:
 
-- `/home/runner/work/Rover/Rover/firmware/platformio.ini`
-- `/home/runner/work/Rover/Rover/firmware/src/main.cpp`
-- `/home/runner/work/Rover/Rover/firmware/include/pin_config.h`
-- `/home/runner/work/Rover/Rover/docs/t-2can-odrive-setup.md`
-- `/home/runner/work/Rover/Rover/docs/rover_2-delivery.md`
-- `/home/runner/work/Rover/Rover/.github/workflows/build-firmware.yml` (optional CI build)
+- `firmware/platformio.ini`
+- `firmware/src/main.cpp`
+- `firmware/include/pin_config.h`
+- `docs/t-2can-odrive-setup.md`
+- `docs/rover_2-delivery.md`
+- `.github/workflows/build-firmware.yml` (optional CI build)
 
 ## 2) Target behavior included
 
@@ -25,13 +25,12 @@ Copy these paths into your Rover_2 repository:
 ## 3) Build command (PlatformIO)
 
 ```bash
-cd /home/runner/work/Rover/Rover/firmware
+cd firmware
 pio run --environment lilygo-t2can
 ```
 
 ## 4) Expected `.bin` output paths
 
-- `/home/runner/work/Rover/Rover/firmware/.pio/build/lilygo-t2can/firmware.bin`
-- `/home/runner/work/Rover/Rover/firmware/.pio/build/lilygo-t2can/bootloader.bin`
-- `/home/runner/work/Rover/Rover/firmware/.pio/build/lilygo-t2can/partitions.bin`
-
+- `firmware/.pio/build/lilygo-t2can/firmware.bin`
+- `firmware/.pio/build/lilygo-t2can/bootloader.bin`
+- `firmware/.pio/build/lilygo-t2can/partitions.bin`

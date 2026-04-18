@@ -9,16 +9,16 @@ PlatformIO firmware for **LILYGO T-2CAN (ESP32-S3)** controlling **4x MKS ODrive
 
 ## Build (PlatformIO)
 ```bash
-cd /home/runner/work/Rover/Rover/firmware
+cd firmware
 pio run --environment lilygo-t2can
 ```
 
 ## Output binaries
 After a successful build:
-- `/home/runner/work/Rover/Rover/firmware/.pio/build/lilygo-t2can/firmware.bin`
-- `/home/runner/work/Rover/Rover/firmware/.pio/build/lilygo-t2can/bootloader.bin`
-- `/home/runner/work/Rover/Rover/firmware/.pio/build/lilygo-t2can/partitions.bin`
+- `firmware/.pio/build/lilygo-t2can/firmware.bin`
+- `firmware/.pio/build/lilygo-t2can/bootloader.bin`
+- `firmware/.pio/build/lilygo-t2can/partitions.bin`
 
 ## Setup and delivery docs
-- `/home/runner/work/Rover/Rover/docs/t-2can-odrive-setup.md`
-- `/home/runner/work/Rover/Rover/docs/rover_2-delivery.md`
+- `docs/t-2can-odrive-setup.md`
+- `docs/rover_2-delivery.md`
